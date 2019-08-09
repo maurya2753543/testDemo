@@ -1,0 +1,28 @@
+DATABASE NOTES
+
+
+
+Boyce-Codd Normal Form (BCNF)
+Even when a database is in 3rd Normal Form, still there would be anomalies resulted if it has more than one Candidate Key.
+
+Sometimes is BCNF is also referred as 3.5 Normal Form.
+
+4NF (Fourth Normal Form) Rules
+If no database table instance contains two or more, independent and multivalued data describing the relevant entity, then it is in 4th Normal Form.
+
+5NF (Fifth Normal Form) Rules
+A table is in 5th Normal Form only if it is in 4NF and it cannot be decomposed into any number of smaller tables without loss of data.
+
+6NF (Sixth Normal Form) Proposed
+6th Normal Form is not standardized, yet however, it is being discussed by database experts for some time. Hopefully, we would have a clear & standardized definition for 6th Normal Form in the near future...
+
+That's all to Normalization!!!
+
+Summary
+Database designing is critical to the successful implementation of a database management system that meets the data requirements of an enterprise system.
+Normalization helps produce database systems that are cost-effective and have better security models.
+Functional dependencies are a very important component of the normalize data process
+Most database systems are normalized database up to the third normal forms.
+A primary key uniquely identifies are record in a Table and cannot be null
+A foreign key helps connect table and references a primary key
+ 

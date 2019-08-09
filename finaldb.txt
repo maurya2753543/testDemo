@@ -1,0 +1,163 @@
+
+-- CREATE TABLE FOR AIRLINES *********************************************
+
+create table airlines(airline_id int not null IDENTITY (1,1),airline_name nvarchar(30),airline_code nvarchar(5) primary key );
+SET IDENTITY_INSERT airlines ON
+insert into airlines(airline_id,airline_name,airline_code) values(1, 'Air India', 'AI');
+insert into airlines(airline_id,airline_name,airline_code) values(2, 'SpiceJet', 'SP');
+insert into airlines(airline_id,airline_name,airline_code) values(3, 'Jet Airways', 'JA');
+
+insert into airlines(airline_id,airline_name,airline_code) values(4, 'IndiGo', 'IG');
+insert into airlines(airline_id,airline_name,airline_code) values(5, 'GoAir', 'GA');
+
+insert into airlines(airline_id,airline_name,airline_code) values(6, 'AirAsia', 'AA');
+insert into airlines(airline_id,airline_name,airline_code) values(7, 'Vistara', 'VT');
+insert into airlines(airline_id,airline_name,airline_code) values(8, 'Singapore Airlines', 'SA');
+insert into airlines(airline_id,airline_name,airline_code) values(9, 'Emirates', 'ET');
+insert into airlines(airline_id,airline_name,airline_code) values(10, 'ANA All Nippon Airways', 'AP');
+
+insert into airlines(airline_id,airline_name,airline_code) values(11, 'Cathay Pacific Airways', 'CPA');
+insert into airlines(airline_id,airline_name,airline_code) values(12, 'Hainan Airlines', 'HA');
+insert into airlines(airline_id,airline_name,airline_code) values(13, 'Qantas Airways', 'QA');
+
+SET IDENTITY_INSERT airlines OFF
+
+
+-- CREATE TABLE FOR FLIGHT **************************************************************************
+
+
+
+create table flights (flight_id int primary key IDENTITY (1,1)  , airline_code nvarchar(255) not null,flight_no   int not null );
+
+
+
+SET IDENTITY_INSERT flights ON
+
+insert into flights(flight_id ,airline_code ,flight_no) values(20, 'AI', 50);
+insert into flights(flight_id ,airline_code ,flight_no) values(21, 'SP', 51);
+insert into flights(flight_id ,airline_code ,flight_no) values(22, 'JA', 52);
+insert into flights(flight_id ,airline_code ,flight_no) values(23, 'IG', 53);
+insert into flights(flight_id ,airline_code ,flight_no) values(24, 'GA', 54);
+insert into flights(flight_id ,airline_code ,flight_no) values(25, 'AA', 55);
+insert into flights(flight_id ,airline_code ,flight_no) values(26, 'VT', 56);
+insert into flights(flight_id ,airline_code ,flight_no) values(27, 'SA', 57);
+insert into flights(flight_id ,airline_code ,flight_no) values(28, 'AP', 58);
+insert into flights(flight_id ,airline_code ,flight_no) values(29, 'ET', 59);
+insert into flights(flight_id ,airline_code ,flight_no) values(30, 'AP', 60);
+insert into flights(flight_id ,airline_code ,flight_no) values(31, 'CPA', 61);
+insert into flights(flight_id ,airline_code ,flight_no) values(32, 'HA', 62);
+insert into flights(flight_id ,airline_code ,flight_no) values(33, 'QA', 63);
+
+SET IDENTITY_INSERT flights OFF
+
+select *from flights;
+
+-- *********************************************************************************************
+-- 
+
+
+create table routes(route_id integer primary key, from_city varchar(255),to_city varchar(255));
+
+insert into routes(route_id, from_city,to_city) values(100, 'DELHI','HYDERABAD');
+
+insert into routes(route_id, from_city,to_city) values(101, 'DELHI','VARANASI');
+
+insert into routes(route_id, from_city,to_city) values(102, 'VARANASI','HYDERABAD');
+
+insert into routes(route_id, from_city,to_city) values(103, 'CHENNAI','HYDERABAD');
+
+
+insert into routes(route_id, from_city,to_city) values(104, 'DELHI','MUMBAI');
+
+
+
+
+insert into routes(route_id, from_city,to_city) values(105, 'TAMIL NAIDU','HYDERABAD');
+
+
+insert into routes(route_id, from_city,to_city) values(106, 'KOLKATA','HYDERABAD');
+
+
+insert into routes(route_id, from_city,to_city) values(107, 'GUJARAT','HYDERABAD');
+
+
+insert into routes(route_id, from_city,to_city) values(108, 'DELHI','GOA');
+
+
+insert into routes(route_id, from_city,to_city) values(109, 'BANGLORE','HYDERABAD');
+
+
+insert into routes(route_id, from_city,to_city) values(100, 'MUMBAI','HYDERABAD');
+
+
+insert into routes(route_id, from_city,to_city) values(110, 'TELANGANA','HYDERABAD');
+
+
+insert into routes(route_id, from_city,to_city) values(111, 'GOA','HYDERABAD');
+
+
+insert into routes(route_id, from_city,to_city) values(112, 'DELHI','WEST BANGAL');
+
+
+insert into routes(route_id, from_city,to_city) values(113, 'AHMEDABAD','HYDERABAD');
+
+insert into routes(route_id, from_city,to_city) values(114, 'DELHI','AHMEDABAD');
+
+
+
+insert into routes(route_id, from_city,to_city) values(115, 'AHMEDABAD','GOA');
+
+insert into routes(route_id, from_city,to_city) values(116, 'WEST BANGAL','HYDERABAD');
+
+
+
+insert into routes(route_id, from_city,to_city) values(117, 'DELHI','HYDERABAD');
+
+
+insert into routes(route_id, from_city,to_city) values(118, 'GOA','NEW DELHI');
+
+insert into routes(route_id, from_city,to_city) values(119, 'GOA','WEST BANGAL');
+
+insert into routes(route_id, from_city,to_city) values(120, 'VARANASI','LAKHNEW ');
+
+
+select *from routes;
+-- **************************************************************************************************
+-- create table for the on Route
+
+create table flight_OnRoute(FR_id int primary key IDENTITY (1,1),flight_id int not null,route_id int not null,  Base_fare int not null);
+
+SET IDENTITY_INSERT flight_OnRoute ON
+
+
+insert into flight_OnRoute(FR_id,flight_id,route_id,Base_fare) values(201, 20,100, 1500);
+insert into flight_OnRoute(FR_id,flight_id,route_id,Base_fare) values(202, 21,101, 2000);
+insert into flight_OnRoute(FR_id,flight_id,route_id,Base_fare) values(203, 22,102, 2500);
+insert into flight_OnRoute(FR_id,flight_id,route_id,Base_fare) values(204, 23,103, 2600);
+insert into flight_OnRoute(FR_id,flight_id,route_id,Base_fare) values(205, 24,104, 2450);
+insert into flight_OnRoute(FR_id,flight_id,route_id,Base_fare) values(206, 25,106, 3000);
+insert into flight_OnRoute(FR_id,flight_id,route_id,Base_fare) values(207, 27,108, 2900);
+insert into flight_OnRoute(FR_id,flight_id,route_id,Base_fare) values(208, 28,109, 30000);
+insert into flight_OnRoute(FR_id,flight_id,route_id,Base_fare) values(209, 29,110, 25000);
+insert into flight_OnRoute(FR_id,flight_id,route_id,Base_fare) values(210, 30,100, 27000);
+insert into flight_OnRoute(FR_id,flight_id,route_id,Base_fare) values(211, 31,100, 9000);
+insert into flight_OnRoute(FR_id,flight_id,route_id,Base_fare) values(212, 32,100, 10000);
+insert into flight_OnRoute(FR_id,flight_id,route_id,Base_fare) values(213, 33,100, 27000);
+insert into flight_OnRoute(FR_id,flight_id,route_id,Base_fare) values(214, 24,100, 28000);
+insert into flight_OnRoute(FR_id,flight_id,route_id,Base_fare) values(215, 25,100, 36900);
+insert into flight_OnRoute(FR_id,flight_id,route_id,Base_fare) values(216, 26,100, 9600);
+insert into flight_OnRoute(FR_id,flight_id,route_id,Base_fare) values(217, 22,100, 7800);
+insert into flight_OnRoute(FR_id,flight_id,route_id,Base_fare) values(218, 25,100, 9500);
+
+
+SET IDENTITY_INSERT flight_OnRoute OFF
+
+
+
+select *from flight_OnRoute;
+
+
+
+
+
+

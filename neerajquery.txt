@@ -1,0 +1,49 @@
+create table categories(cat_id int PRIMARY KEY AUTO_INCREMENT, cat_name varchar(255), status int(1), parent_id int(1), date timestamp);
+insert into categories(cat_id, cat_name, status) values (1,'men',5);
+insert into categories(cat_name , status,parent_id) values ('shirt',0,1),('jeans',1,1),('jeans',1,2);
+insert into categories(cat_name , status,parent_id) values ('women',2);
+insert into categories(cat_name , status,parent_id) values ('shirt',0,1),('jeans',1,1),('jeans',1,5);
+insert into categories(cat_name , status,parent_id) values ('shirt',0,2);
+
+create table products(product_id int primary key auto_increment, cat_id int,product_name varchar(255), price decimal(8,3) not null,discounted_price decimal(8,3) not null, status ENUM ('enable','disable'),created_date timestamp,foreign key(cat_id) references categories (cat_id));  
+desc products;
+insert into products(product_id, cat_id, product_name, price, discounted_price, status) values (1, 2,'scandal', 15.0, 10.5, 'enable');
+
+insert into products(product_id, cat_id, product_name, price, discounted_price, status) values (2, 1,'tie', 5.0, 3.5, 'enable');
+
+insert into products( cat_id, product_name, price, discounted_price, status) values (3,'shirt',16.1,13.5, 'enable'),(1,'pants',20,16.8,'enable');
+
+insert into products(cat_id, product_name, price, discounted_price, status) values (1,'top', 12.4, 9.5, 'disable');
+
+insert into products(cat_id, product_name, price, discounted_price, status) values (2,'top', 12.4, 9.5, 'disable');
+
+insert into products(cat_id, product_name, price, discounted_price, status) values (2,'leggings', 12.4, 9.5, 'enable');
+
+select product_name, cat_name as category_name , price, discounted_price from categories c left join products p ON p.cat_id = c.cat_id ;
+
+insert into products(cat_id, product_name, price, discounted_price, status) values (5,'men jeans', 12.2, 9.4, 'enable');
+
+insert into products(cat_id, product_name, price, discounted_price, status) values (6,'women jeans', 12.0, 9.0, 'enable');
+
+select product_name, cat_name as category_name , price, discounted_price from categories c left join products p ON p.cat_id = c.cat_id order by cat_name, product_name desc;
+
+select cat_name as category_name, sum(price) from categories c left join products p ON p.cat_id = c.cat_id group by c.cat_name ;
+
+create table customers(customer_id int primary key auto_increment, customer_name varchar(255), email varchar(255), password varchar(255), status varchar(255), created_date timestamp);
+
+create table orders(order_id int primary key auto_increment,customer_id int,order_amount decimal(8,3) not null, taxable_amount decimal(8,3) not null, total_amount decimal(8,3) not null, created_date timestamp,foreign key(customer_id) references customers (customer_id)); 
+
+alter table orders modify created_date datetime;
+
+create table ordered_products(ordered_product_id int primary key auto_increment, order_id int , product_id int not null,quantity decimal(8,3) not null, price decimal(8,3) not null,discounted_price decimal(8,3) not null, foreign key(order_id) references orders(order_id));   
+
+insert into customers(customer_name,email, password, status) values ('Raman Singh', 'raman.s@gmail.com','text123','order placed'),('Manoj Sinha', 'manojsinha@gmail.com','text123','order placed'),('Ajay Verma', 'verma.ajay@gmail.com','text123','order placed'), ('Ram Singh', 'ram.singh@gmail.com','text123','order not placed');
+
+select o.order_id, customer_name,GROUP_CONCAT(p.product_name) AS products, o.created_date FROM orders o JOIN customers c , ordered_products op, products p WHERE o.customer_id = c.customer_id and o.order_id = op.order_id and op.product_id = p.product_id GROUP BY order_id;
+
+CREATE VIEW details AS SELECT message_id,message_text FROM messages;
+
+DELIMITER $$ CREATE FUNCTION formatted_data(date1 date) RETURNS varchar(255) BEGIN DECLARE date2 date;SELECT date_format(date1 ,'%D %M %Y) INTO date2; RETURN date2; END $$
+>create table messages(message_id int primary key auto_increment, sender_id int, receiver_id int, message_text text, foreign key(sender_id) references customers (customer_id), foreign key(receiver_id) references customers (customer_id)); 
+insert into messages (message_id, sender_id, receiver_id, message_text) values (1, 101,103, "Hi Ajay, Raman this side."), (2, 103, 101, "Hi Raman how you doin"); 
+
