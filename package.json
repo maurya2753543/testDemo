@@ -1,0 +1,31 @@
+{
+  "name": "data-service-api",
+  "version": "1.0.0",
+  "description": "Data Services API for ReportPRO",
+  "type": "module",
+  "main": "api.js",
+  "scripts": {
+    "test": "node api.js"
+  },
+  "author": "M Gotwals",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^3.2.4",
+    "body-parser": "^1.20.2",
+    "buffer": "^6.0.3",
+    "cors": "^2.8.5",
+    "cryptr": "^6.3.0",
+    "express": "^4.18.2",
+    "filereader": "^0.10.3",
+    "jsonschema": "^1.4.1",
+    "jszip": "^3.10.1",
+    "lodash": "^4.17.21",
+    "lodash-contrib": "^4.1200.1",
+    "os": "^0.1.2",
+    "pouchdb": "^8.0.1",
+    "pouchdb-find": "^8.0.1",
+    "serialport": "^12.0.0",
+    "socket.io": "^4.7.2",
+    "usb": "^2.11.0"
+  }
+}
